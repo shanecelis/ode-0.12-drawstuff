@@ -1,7 +1,14 @@
 # Drawstuff is meant as an aid for testing and not as a full
 # rendering library.
 
+if INSTALL_DRAWSTUFF
+$(warning installing drawstuff)
+lib_LTLIBRARIES = libdrawstuff.la
+else
+$(warning not installing drawstuff)
 noinst_LTLIBRARIES = libdrawstuff.la
+endif
+
 libdrawstuff_la_SOURCES = drawstuff.cpp internal.h
 AM_CPPFLAGS = -I$(top_srcdir)/include \
         -DDEFAULT_PATH_TO_TEXTURES='"$(top_srcdir)/drawstuff/textures/"' \

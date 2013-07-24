@@ -2,10 +2,11 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
+texturedir=@prefix@/share/ode/textures
 
 Name: ode
 Description: Open Dynamics Engine
 Version: @ODE_RELEASE@
-Libs: -L${libdir} -lode
+Libs: -L${libdir} -lode @DRAWSTUFF_LIBS@
 Libs.private: -lstdc++ -lm
-Cflags: -I${includedir} @ODE_PRECISION@
+Cflags: -I${includedir} @ODE_PRECISION@ @DRAWSTUFF_CFLAGS@

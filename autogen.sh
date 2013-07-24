@@ -33,9 +33,9 @@ echo "Running aclocal"
 aclocal -I m4 --install || exit 1
 # on Mac libtoolize is called glibtoolize
 LIBTOOLIZE=libtoolize
-#if [ `uname -s` = Darwin ]; then
-#    LIBTOOLIZE=glibtoolize
-#fi
+if [ `uname -s` = Darwin ]; then
+    LIBTOOLIZE=glibtoolize
+fi
 echo "Running $LIBTOOLIZE"
 $LIBTOOLIZE --copy --force --automake || exit 1
 echo "Running autoheader"

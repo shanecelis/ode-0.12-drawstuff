@@ -13,6 +13,10 @@ if ENABLE_DEMOS
 DRAWSTUFF_DIR = drawstuff
 endif
 
+if INSTALL_DRAWSTUFF
+DRAWSTUFF_DIR = drawstuff
+endif
+
 if GIMPACT
 GIMPACT_DIR = GIMPACT
 endif
