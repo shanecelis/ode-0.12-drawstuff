@@ -16570,7 +16570,8 @@ fi
 
 
 if test "x$enable_install_drawstuff" = "xyes"; then :
-  DRAWSTUFF_CFLAGS='-DDEFAULT_PATH_TO_TEXTURES=${prefix}/share/drawstuff/textures/'
+
+      DRAWSTUFF_CFLAGS='-DDEFAULT_PATH_TO_TEXTURES=${prefix}/share/drawstuff/textures/'
       DRAWSTUFF_LIBS=-ldrawstuff
 
 else
@@ -18131,7 +18132,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile include/Makefile include/ode/Makefile include/drawstuff/Makefile ode/Makefile ode/src/Makefile ode/src/joints/Makefile drawstuff/Makefile drawstuff/src/Makefile drawstuff/dstest/Makefile ode/demo/Makefile OPCODE/Makefile OPCODE/Ice/Makefile GIMPACT/Makefile GIMPACT/include/Makefile GIMPACT/include/GIMPACT/Makefile GIMPACT/src/Makefile tests/Makefile tests/UnitTest++/Makefile tests/UnitTest++/src/Makefile tests/UnitTest++/src/Posix/Makefile tests/UnitTest++/src/Win32/Makefile ode-config ode.pc"
+ac_config_files="$ac_config_files Makefile include/Makefile include/ode/Makefile include/drawstuff/Makefile ode/Makefile ode/src/Makefile ode/src/joints/Makefile drawstuff/Makefile drawstuff/src/Makefile drawstuff/dstest/Makefile ode/demo/Makefile OPCODE/Makefile OPCODE/Ice/Makefile GIMPACT/Makefile GIMPACT/include/Makefile GIMPACT/include/GIMPACT/Makefile GIMPACT/src/Makefile tests/Makefile tests/UnitTest++/Makefile tests/UnitTest++/src/Makefile tests/UnitTest++/src/Posix/Makefile tests/UnitTest++/src/Win32/Makefile ode-config ode.pc drawstuff.pc"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -19347,6 +19348,7 @@ do
     "tests/UnitTest++/src/Win32/Makefile") CONFIG_FILES="$CONFIG_FILES tests/UnitTest++/src/Win32/Makefile" ;;
     "ode-config") CONFIG_FILES="$CONFIG_FILES ode-config" ;;
     "ode.pc") CONFIG_FILES="$CONFIG_FILES ode.pc" ;;
+    "drawstuff.pc") CONFIG_FILES="$CONFIG_FILES drawstuff.pc" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

@@ -79,11 +79,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@INSTALL_DRAWSTUFF_TRUE@am__append_1 = drawstuff.pc
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/ode-config.in $(srcdir)/ode.pc.in compile \
-	config.guess config.sub depcomp install-sh missing ltmain.sh
+	$(srcdir)/ode-config.in $(srcdir)/ode.pc.in \
+	$(srcdir)/drawstuff.pc.in compile config.guess config.sub \
+	depcomp install-sh missing ltmain.sh
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -95,7 +97,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/ode/src/config.h
-CONFIG_CLEAN_FILES = ode-config ode.pc
+CONFIG_CLEAN_FILES = ode-config ode.pc drawstuff.pc
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -385,7 +387,7 @@ EXTRA_DIST = autogen.sh build tools \
         bindings
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = ode.pc
+pkgconfig_DATA = ode.pc $(am__append_1)
 all: all-recursive
 
 .SUFFIXES:
@@ -426,6 +428,8 @@ $(am__aclocal_m4_deps):
 ode-config: $(top_builddir)/config.status $(srcdir)/ode-config.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 ode.pc: $(top_builddir)/config.status $(srcdir)/ode.pc.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+drawstuff.pc: $(top_builddir)/config.status $(srcdir)/drawstuff.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
