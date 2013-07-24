@@ -46,3 +46,7 @@ EXTRA_DIST = autogen.sh build tools \
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = ode.pc
+
+if INSTALL_DRAWSTUFF
+pkgconfig_DATA += drawstuff.pc
+endif
