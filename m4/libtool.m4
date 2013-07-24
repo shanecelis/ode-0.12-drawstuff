@@ -2669,28 +2669,10 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   # before this can be enabled.
   hardcode_into_libs=yes
 
-  # find out which ABI we are using
-  libsuff=
-  case "$host_cpu" in
-  x86_64*|s390x*|powerpc64*)
-    echo '[#]line __oline__ "configure"' > conftest.$ac_ext
-    if AC_TRY_EVAL(ac_compile); then
-      case `/usr/bin/file conftest.$ac_objext` in
-      *64-bit*)
-        libsuff=64
-        ;;
-      esac
-    fi
-    rm -rf conftest*
-    ;;
-  esac
-
-  sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff}"
-
   # Append ld.so.conf contents to the search path
   if test -f /etc/ld.so.conf; then
     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;s/"//g;/^$/d' | tr '\n' ' '`
-    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
+    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
   fi
 
   # We used to test for /lib/ld.so.1 and disable shared libraries on
@@ -4596,9 +4578,6 @@ m4_if([$1], [CXX], [
       ;;
     esac
     ;;
-  linux* | k*bsd*-gnu)
-    _LT_TAGVAR(link_all_deplibs, $1)=no
-    ;;
   *)
     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
     ;;
@@ -5059,7 +5038,6 @@ _LT_EOF
 	if test "$aix_use_runtimelinking" = yes; then
 	  shared_flag="$shared_flag "'${wl}-G'
 	fi
-	_LT_TAGVAR(link_all_deplibs, $1)=no
       else
 	# not using gcc
 	if test "$host_cpu" = ia64; then
@@ -6057,7 +6035,6 @@ if test "$_lt_caught_CXX_error" != yes; then
 	  if test "$aix_use_runtimelinking" = yes; then
 	    shared_flag="$shared_flag "'${wl}-G'
 	  fi
-	  _LT_TAGVAR(link_all_deplibs, $1)=no
         else
           # not using gcc
           if test "$host_cpu" = ia64; then
@@ -7470,6 +7447,10 @@ lt_simple_link_test_code='public class conftest { public static void main(String
 # ltmain only uses $CC for tagged configurations so make sure $CC is set.
 _LT_TAG_COMPILER
 
+# save warnings/boilerplate of simple test code
+_LT_COMPILER_BOILERPLATE
+_LT_LINKER_BOILERPLATE
+
 # Allow CC to be a program name with arguments.
 lt_save_CC=$CC
 lt_save_CFLAGS=$CFLAGS
@@ -7481,13 +7462,6 @@ compiler=$CC
 _LT_TAGVAR(compiler, $1)=$CC
 _LT_TAGVAR(LD, $1)="$LD"
 _LT_CC_BASENAME([$compiler])
-
-ac_compile='$CC -c $GCJFLAGS conftest.$ac_ext >&AS_MESSAGE_LOG_FD'
-ac_link='$CC -o conftest$ac_exeext --main=conftest $GCJFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&AS_MESSAGE_LOG_FD'
-
-# save warnings/boilerplate of simple test code
-_LT_COMPILER_BOILERPLATE
-_LT_LINKER_BOILERPLATE
 
 # GCJ did not exist at the time GCC didn't implicitly link libc in.
 _LT_TAGVAR(archive_cmds_need_lc, $1)=no
